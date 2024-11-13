@@ -16,50 +16,82 @@
             <img src="assets/logo.png" alt="logo" class="logo">
             <nav>
                 <i class="fa-solid fa-earth-americas"></i>
-                <i class="fas fa-bars menu-icon"></i>
+                <i class="fas fa-bars menu-icon" id="menu-icon" onclick="toggleMenu()"></i>
             </nav>
         </div>
+
+        <nav class="boxNav" id="menu">
+            <a id="home-link">Home</a>
+            <a id="projects-link">Nossos projetos</a>
+            <a id="aboutus-link">Sobre nós</a>
+            <a id="products-link">Nossos produtos</a>
+            <a id="contact-link">Fale conosco</a>
+        </nav>
     </header>
 
     <main>
-        <video class="video" aria-label="video" autoplay muted loop playsinline>
+        <video id="home" class="video" aria-label="video" autoplay muted loop playsinline>
             <source src="assets/video_back.mp4" type="video/mp4">
         </video>
 
-        <div class="content1">
+        <!---------------------------------------1 Bloco--------------------------------------->
+        <div id="content1" class="content1">
+            <h1 class="scroll-animate">NOSSOS PROJETOS</h1>
+            <div class="carousel-container scroll-animate">
+                <div class="carousel-video" id="video1" onmouseover="setActiveVideo(0)"></div>
+                <div class="carousel-video active" id="video2" onmouseover="setActiveVideo(1)"></div>
+                <div class="carousel-video" id="video3" onmouseover="setActiveVideo(2)"></div>
+            </div>
 
+            <div class="video-description-container">
+                <p id="video-description">INSTITUCIONAL GRUPO KEFRAYA</p>
+            </div>
         </div>
 
-        <div class="content2">
+
+
+        <!---------------------------------------2 Bloco--------------------------------------->
+        <div id="content2" class="content2">
             <nav>
-                <h1>SOBRE NÓS</h1>
+                <h1 class="scroll-animate">SOBRE NÓS</h1>
 
                 <div class="boxAbout">
                     <div>
-                        <h2>2019</h2>
+                        <h2 class="count-up" data-target="2019">0</h2>
                         <label>No mercado</label>
                     </div>
 
                     <div>
-                        <h2>50+</h2>
+                        <h2 class="count-up" data-target="50">0</h2>
                         <label>Empresas</label>
                     </div>
 
                     <div>
-                        <h2>1000+</h2>
+                        <h2 class="count-up" data-target="3000">0</h2>
                         <label>Produções</label>
                     </div>
 
                     <div>
-                        <h2>100000+</h2>
+                        <h2 class="count-up" data-target="300000">0</h2>
                         <label>Pessoas Impactadas</label>
                     </div>
                 </div>
+
+                <h3 class="scroll-animate">A <strong>Arara Azul Produções</strong> é mais do que uma produtora
+                    audiovisual. É um
+                    <strong>atelier de
+                        histórias visuais</strong>, onde cada projeto é tratado como uma obra de arte única.
+                    A produtora se dedica a criar filmes que emocionam e que respeitam a
+                    autenticidade de cada história.
+                    <strong>"Sua essência, nossa arte"</strong>, a marca se consolida
+                    como a escolha ideal para quem busca mais do que imagens — busca uma
+                    experiência visual que viva para sempre.
+                </h3>
             </nav>
 
             <div class="containerInfoAbout">
                 <div class="boxInfoAbout">
-                    <div>
+                    <div class="scroll-animate">
                         <h1><i class="fa-solid fa-circle-notch icoInfo"></i> Solução 360
                         </h1>
                         <p style="margin-bottom: 40px;">Oferecemos uma solução completa, englobando todas as etapas do
@@ -77,13 +109,13 @@
                             eventos e filmes institucionais.</p>
                     </div>
 
-                    <img src="assets/img1.png" alt="img" class="imgInfo">
+                    <img src="assets/img1.png" alt="img" class="imgInfo scroll-animate">
                 </div>
 
                 <div class="boxInfoAbout">
-                    <img src="assets/img2.png" alt="img" class="imgInfo">
+                    <img src="assets/img2.png" alt="img" class="imgInfo scroll-animate">
 
-                    <div>
+                    <div class="scroll-animate">
                         <h1><i class="fa-solid fa-clapperboard icoInfo"></i> Excelência
                             Técnica</h1>
                         <p style="margin-bottom: 40px;">O nosso compromisso com a excelência técnica, aliado ao uso de
@@ -100,7 +132,10 @@
             </div>
         </div>
 
-        <div class="content3">
+
+
+        <!---------------------------------------3 Bloco--------------------------------------->
+        <div id="content3" class="content3">
             <h1>Explore nossos produtos</h1>
 
             <button class="scroll-btn left" onclick="scrollContentLeft()"><i
@@ -122,7 +157,7 @@
 
     <footer>
         <div class="containerFooter">
-            <img src="assets/logo_footer.png" alt="logo" class="logoFooter">
+            <img src="assets/logo.png" alt="logo" class="logoFooter">
             <h1>Copyright © Catarinos, Inc. All rights reserved.</h1>
         </div>
     </footer>
