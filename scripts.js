@@ -39,6 +39,7 @@ smoothScroll("products-link", "content3");
 
 const container = document.querySelector("#content3 .scroll-container");
 let autoScroll;
+let autoScrollTimeout;
 const scrollConfig = { step: 2.3, interval: 20, timeout: 3000 };
 
 function addMoreItems() {
@@ -50,6 +51,7 @@ function addMoreItems() {
 }
 
 function startAutoScroll() {
+    stopAutoScroll();
     autoScroll = setInterval(() => {
         container.scrollLeft += scrollConfig.step;
 
@@ -64,16 +66,9 @@ function stopAutoScroll() {
 }
 
 function restartAutoScrollAfterDelay() {
-    stopAutoScroll();
-    setTimeout(startAutoScroll, scrollConfig.timeout);
+    clearTimeout(autoScrollTimeout);
+    autoScrollTimeout = setTimeout(startAutoScroll, scrollConfig.timeout);
 }
-
-window.addEventListener('scroll', function () {
-    const content3Position = document.querySelector("#content3").getBoundingClientRect().top;
-    if (content3Position < window.innerHeight && !autoScroll) {
-        startAutoScroll();
-    }
-});
 
 document.querySelector("#content3 .scroll-btn.left").onclick = () => {
     stopAutoScroll();
@@ -87,6 +82,12 @@ document.querySelector("#content3 .scroll-btn.right").onclick = () => {
     restartAutoScrollAfterDelay();
 };
 
+window.addEventListener('scroll', function () {
+    const content3Position = document.querySelector("#content3").getBoundingClientRect().top;
+    if (content3Position < window.innerHeight && !autoScroll) {
+        startAutoScroll();
+    }
+});
 
 
 
