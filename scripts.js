@@ -20,6 +20,8 @@ function toggleMenu() {
     }
 }
 
+
+
 function smoothScroll(linkId, targetId) {
     document.getElementById(linkId).addEventListener("click", function (event) {
         event.preventDefault();
@@ -33,15 +35,26 @@ smoothScroll("projects-link", "content1");
 smoothScroll("aboutus-link", "content2");
 smoothScroll("products-link", "content3");
 
-const container = document.querySelector(".scroll-container");
-let autoScroll, autoScrollTimeout;
+
+
+const container = document.querySelector("#content3 .scroll-container");
+let autoScroll;
 const scrollConfig = { step: 2.3, interval: 20, timeout: 3000 };
+
+function addMoreItems() {
+    const items = Array.from(container.children);
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        container.appendChild(clone);
+    });
+}
 
 function startAutoScroll() {
     autoScroll = setInterval(() => {
         container.scrollLeft += scrollConfig.step;
-        if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
-            container.scrollLeft = 0;
+
+        if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 100) {
+            addMoreItems();
         }
     }, scrollConfig.interval);
 }
@@ -50,19 +63,32 @@ function stopAutoScroll() {
     clearInterval(autoScroll);
 }
 
-function resetAutoScrollTimeout() {
+function restartAutoScrollAfterDelay() {
     stopAutoScroll();
-    clearTimeout(autoScrollTimeout);
-    autoScrollTimeout = setTimeout(startAutoScroll, scrollConfig.timeout);
+    setTimeout(startAutoScroll, scrollConfig.timeout);
 }
 
-document.querySelector(".scroll-btn.left").onclick = () => { resetAutoScrollTimeout(); container.scrollLeft -= 300; };
-document.querySelector(".scroll-btn.right").onclick = () => { resetAutoScrollTimeout(); container.scrollLeft += 300; };
-
 window.addEventListener('scroll', function () {
-    const content3Position = document.querySelector(".content3").getBoundingClientRect().top;
-    if (content3Position < window.innerHeight && !autoScroll) startAutoScroll();
+    const content3Position = document.querySelector("#content3").getBoundingClientRect().top;
+    if (content3Position < window.innerHeight && !autoScroll) {
+        startAutoScroll();
+    }
 });
+
+document.querySelector("#content3 .scroll-btn.left").onclick = () => {
+    stopAutoScroll();
+    container.scrollLeft -= 300;
+    restartAutoScrollAfterDelay();
+};
+
+document.querySelector("#content3 .scroll-btn.right").onclick = () => {
+    stopAutoScroll();
+    container.scrollLeft += 300;
+    restartAutoScrollAfterDelay();
+};
+
+
+
 
 const counters = document.querySelectorAll('.count-up');
 const animatedElements = document.querySelectorAll('.scroll-animate');
@@ -92,8 +118,12 @@ function handleScrollAnimation() {
         }
     });
 }
+
 window.addEventListener('scroll', handleScrollAnimation);
 handleScrollAnimation();
+
+
+
 
 let players = [];
 let currentIndex = 1;
@@ -130,6 +160,9 @@ function setActiveVideo(index) {
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 document.head.appendChild(tag);
+
+
+
 
 document.getElementById("contact-link").addEventListener("click", function (event) {
     event.preventDefault();
